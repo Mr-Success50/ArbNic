@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thinking</title> 
+</head> 
+<body style="height: 100vh;">
+
+<main>   
+
+    <section style="padding:20px;">  
+        <div>
+            <form>
+                <h2 class="mg-bottom10px">Welcome to Trade Analyzer</h2>  
+                <p style="font-size: 20px; text-align:center; padding:10px 10px; background-color:rgba(108, 157, 199, 0.347)">Note: hedge here means the one to win, why Main means the one to loss </p>
+                <span style="font-size: 20px;" >Main - ODD</span><br>
+                <input style="font-size: 17px; width:90%; height:40px; " type="number" name="mainOdd" id="mainOdd" placeholder="Type"><br><br>
+                <span style="font-size: 20px;" >Main - stake</span><br>
+                <input style="font-size: 17px; width:90%; height:40px; " type="number" name="mainStake" id="mainStake" placeholder="Type"><br><br>  
+                <span style="font-size: 20px;" >Hedge - Odd</span><br>
+                <input style="font-size: 17px; width:90%; height:40px; " type="number" onkeyup="showMsg()" name="hedgeOdd" id="hedgeOdd" placeholder="Type"><br><br> 
+            </form>   
+        </div>     
+    </section> 
+
+    <section style="padding:20px;">
+        <h1>Trader Analysis</h1>
+        <div style="display: flex;width:100%;">  
+            <div style="width:50%; background-color:rgba(108, 157, 199, 0.347);">
+                <p style="text-align: center; font-size: 20px; ">Hedge Stake</p>
+                <p style="text-align: center;  font-size: 20px; " id="hedgeStake">0</p> 
+            </div>
+            <div style="width:50%; background-color:rgba(199, 108, 153, 0.347); ">
+                <p style="text-align: center; font-size: 20px; ">Main Stake</p>
+                <p style="text-align: center;  font-size: 20px; " id="mainStake_outPut">0</p> 
+            </div>
+        </div>
+
+        <div style=" width:100%;background-color:rgba(108, 157, 199, 0.347);padding:5px 0;margin:5px 0;">   
+          <p style="text-align: center; font-size: 20px; ">Total Stake</p>
+          <p style="text-align: center;  font-size: 20px; " id="totalStake">0</p> 
+        </div>
+
+        <div style="display: flex;width:100%;">  
+            <div style="width:50%; background-color:rgba(108, 157, 199, 0.347);">
+                <p style="text-align: center; font-size: 20px; ">Win Hedge</p>
+                <p style="text-align: center;  font-size: 20px; " id="winHedge">0</p> 
+            </div>
+            <div style="width:50%; background-color:rgba(199, 108, 153, 0.347);">
+                <p style="text-align: center; font-size: 20px; ">Win Main</p>
+                <p style="text-align: center;  font-size: 20px; " id="winMain">0</p> 
+            </div>
+        </div>
+
+        <div style=" width:100%;background-color:rgba(108, 157, 199, 0.347);padding:5px 0;margin:5px 0;">   
+            <p style="text-align: center; font-size: 20px; ">ROI</p>
+            <p style="text-align: center;  font-size: 20px; " id="totalROI">0</p> 
+        </div>
+         
+        <h1>Market Expectation</h1>
+        <div style="display: flex;width:100%;">  
+            <div style="width:50%; background-color:rgba(108, 157, 199, 0.347);">
+                <p style="text-align: center; font-size: 20px; ">Green Day</p>
+                <p style="text-align: center;  font-size: 20px; " id="greenDay">0</p> 
+            </div>
+            <div style="width:50%; background-color:rgba(199, 108, 153, 0.347);">
+                <p style="text-align: center; font-size: 20px; ">Red Day</p>
+                <p style="text-align: center;  font-size: 20px; " id="redDay">0</p> 
+            </div>
+        </div>
+
+        <h1>Trade With Martingale</h1>
+        <div style="width:100%;">   
+            <div>    
+                <p style="font-size: 15px; ">Level 1</p>
+                <p id="MTG-L1-win" style="font-size: 20px; padding:10px 10px; background-color:rgba(108, 157, 199, 0.347)">Profit</p>
+                <p id="MTG-L1-loss" style="font-size: 20px; padding:10px 10px; background-color:rgba(199, 108, 153, 0.347)">Loose</p> 
+            </div>
+            <div>    
+                <p style="font-size: 15px; ">Level 2</p>
+                <p id="MTG-L2-win" style="font-size: 20px; padding:10px 10px; background-color:rgba(108, 157, 199, 0.347)">Profit</p>
+                <p id="MTG-L2-loss" style="font-size: 20px; padding:10px 10px; background-color:rgba(199, 108, 153, 0.347)">Loose</p> 
+              </div>
+              <div>    
+                <p style="font-size: 15px; ">Level 3</p>
+                <p id="MTG-L3-win" style="font-size: 20px; padding:10px 10px; background-color:rgba(108, 157, 199, 0.347)">Profit</p>
+                <p id="MTG-L3-loss" style="font-size: 20px; padding:10px 10px; background-color:rgba(199, 108, 153, 0.347)">Loose</p> 
+              </div>
+              <div>    
+                <p style="font-size: 15px; ">Level 4</p>
+                <p id="MTG-L4-win" style="font-size: 20px; padding:10px 10px; background-color:rgba(108, 157, 199, 0.347)">Profit</p>
+                <p id="MTG-L4-loss" style="font-size: 20px; padding:10px 10px; background-color:rgba(199, 108, 153, 0.347)">Loose</p> 
+              </div>
+              <div>    
+                <p style="font-size: 15px; ">Level 5</p>
+                <p id="MTG-L5-win" style="font-size: 20px; padding:10px 10px; background-color:rgba(108, 157, 199, 0.347)">Profit</p>
+                <p id="MTG-L5-loss" style="font-size: 20px; padding:10px 10px; background-color:rgba(199, 108, 153, 0.347)">Loose</p> 
+              </div>
+        </div> 
+        <p>Made With Love By Mr Emmanuel Success Okonkwo</p>
+    </section>
+</main>
+
+<script>
+   function showMsg(){
+    //Getting User Inputs
+  let mainOdd = document.getElementById('mainOdd').value;
+  let mainStake = parseInt(document.getElementById('mainStake').value);
+  let hedgeOdd = document.getElementById('hedgeOdd').value;
+
+  // Trades Analysis - Calculating ...
+  let profitMain = mainOdd * mainStake;  
+  let stakeHedge = profitMain / hedgeOdd;  
+  let profitHedge = stakeHedge * hedgeOdd;
+  let stakeHedge_NGN = stakeHedge * 750;
+  let stakeMain_NGN = mainStake * 450;  
+
+  let totalStake_USD = stakeHedge + mainStake;
+  let totalStake_NGN = stakeHedge * 750 + mainStake * 450; 
+  let profitMain_NGN = profitMain * 750; 
+  let profitHedge_NGN = profitHedge * 450; 
+  let actualProfit = profitMain - totalStake_USD; 
+  let actualProfit_percentage = actualProfit / totalStake_USD * 100;
+ 
+    document.getElementById('hedgeStake').innerHTML = stakeHedge.toFixed(2) +' '+'(#'+stakeHedge_NGN+')';
+    document.getElementById('mainStake_outPut').innerHTML = mainStake +' '+'(#'+stakeMain_NGN+')';
+    document.getElementById('totalStake').innerHTML = totalStake_USD.toFixed(2) +' '+'(#'+totalStake_NGN+')';
+    document.getElementById('winHedge').innerHTML = profitHedge +' '+'(#'+profitHedge_NGN+')';
+    document.getElementById('winMain').innerHTML = profitMain +' '+'(#'+profitMain_NGN+')';
+    document.getElementById('totalROI').innerHTML = actualProfit.toFixed(2) +' '+'(%'+actualProfit_percentage.toFixed(2)+')' ;
+  
+
+  // Market Expectation
+  let profitGreen = profitMain_NGN - totalStake_NGN;    
+  let profitGreen_percentage = profitGreen / totalStake_NGN * 100;
+  let profitRed = profitHedge_NGN - totalStake_NGN;  
+  let profitRed_percentage = profitRed / totalStake_NGN * 100;  
+   document.getElementById('greenDay').innerHTML = profitGreen +' '+'(%'+profitGreen_percentage.toFixed(2)+')';
+   document.getElementById('redDay').innerHTML = profitRed +' '+'(%'+profitRed_percentage.toFixed(2)+')';
+ 
+ 
+   
+  // Martingale
+  martin_P1 = profitGreen * 3;  
+  martin_L1 = profitRed * 3; 
+  martin_P2 = martin_P1 * 3;  
+  martin_L2 = martin_L1 * 3;  
+  martin_P3 = martin_P2 * 3;  
+  martin_L3 = martin_L2 * 3;  
+  martin_P4 = martin_P3 * 3;  
+  martin_L4 = martin_L3 * 3; 
+  martin_P5 = martin_P4 * 3;  
+  martin_L5 = martin_L4 * 3; 
+  document.getElementById('MTG-L1-win').innerHTML = 'PROFIT: '+martin_P1;
+  document.getElementById('MTG-L1-loss').innerHTML = 'LOOSE: '+martin_L1;
+  document.getElementById('MTG-L2-win').innerHTML = 'PROFIT: '+martin_P2; 
+  document.getElementById('MTG-L2-loss').innerHTML = 'LOOSE: '+martin_L2;
+  document.getElementById('MTG-L3-win').innerHTML = 'PROFIT: '+martin_P3;
+  document.getElementById('MTG-L3-loss').innerHTML = 'LOOSE: '+martin_L3;
+  document.getElementById('MTG-L4-win').innerHTML = 'PROFIT: '+martin_P4;
+  document.getElementById('MTG-L4-loss').innerHTML = 'LOOSE: '+martin_L4;
+  document.getElementById('MTG-L5-win').innerHTML = 'PROFIT: '+martin_P5;
+  document.getElementById('MTG-L5-loss').innerHTML = 'LOOSE: '+martin_L5;
+ 
+}
+</script>
+</body> 
+</html>
